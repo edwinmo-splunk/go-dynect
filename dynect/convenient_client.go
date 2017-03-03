@@ -3,7 +3,6 @@ package dynect
 import (
 	"fmt"
 	"log"
-	"net/http"
 	"strconv"
 	"strings"
 )
@@ -15,11 +14,9 @@ type ConvenientClient struct {
 
 // NewConvenientClient Creates a new ConvenientClient
 func NewConvenientClient(customerName string) *ConvenientClient {
-	return &ConvenientClient{
-		Client{
-			CustomerName: customerName,
-			httpclient:   &http.Client{},
-		}}
+    return &ConvenientClient{
+        *NewClient(customerName),
+    }
 }
 
 // PublishZone Publish a specific zone and the changes for the current session
